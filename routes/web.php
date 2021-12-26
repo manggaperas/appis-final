@@ -6,7 +6,6 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\ContainerController;
 use App\Http\Controllers\TimelineController;
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\HttpKernel\Controller\ContainerControllerResolver;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +57,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dumptruck', function () {
         return view('dumptruck');
     })->name('dumptruck');
+    Route::get('dumptruck', [ DumptruckController::class, 'index' ])->name('dumptruck');
     Route::get('create-dumptruck', [ DumptruckController::class, 'create' ])->name('dumptruck.create');
     Route::get('dumptruck/{id}/edit', [ DumptruckController::class, 'edit' ])->name('dumptruck.edit');
     Route::post('dumptruck', [ DumptruckController::class, 'store' ])->name('dumptruck.store');
@@ -67,6 +67,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/container', function () {
         return view('container');
     })->name('container');
+    Route::get('container', [ ContainerController::class, 'index' ])->name('container');
     Route::get('create-container', [ ContainerController::class, 'create' ])->name('container.create');
     Route::get('container/{id}/edit', [ ContainerController::class, 'edit' ])->name('container.edit');
     Route::post('container', [ ContainerControllerr::class, 'store' ])->name('container.store');
@@ -80,6 +81,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('timeline', TimelineController::class)->name('timeline'); //Route untuk Timeline
     
     // Route::get('data', [ FrontController::class, 'index' ])->name('data'); 
+
     
 });
 
