@@ -14,6 +14,6 @@ class ArmrollSeeder extends Seeder
      */
     public function run()
     {
-        ArmRoll::factory(3)->create();
+        ArmRoll::factory(40)->create();
     }
 }

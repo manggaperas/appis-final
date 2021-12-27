@@ -21,7 +21,7 @@ class DumptruckController extends Controller
             'bulan' => 'Bulan',
             'tahun' => 'Tahun',
             'volume' => 'Kapasitas Dumptruck',
-            'waktu_perjalanan' => 'Waktu Total Pengangkutan',
+            'waktu_angkut' => 'Waktu Total Pengangkutan',
             'ritasi' => 'Ritasi',
             'jumlah_dumptruck' => 'Kebutuhan Dumptruck',
             'jumlah_pekerja' => 'Jumlah Tenaga Kerja'
@@ -33,45 +33,21 @@ class DumptruckController extends Controller
     // Method penyimpanan data ke database dumptrucks
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'bulan' => 'required|in:januari,februari,maret,april,mei,juni,juli,agustus,september,oktober,november,desember',
-            'tahun' => 'required|numeric',
-            'volume' => 'required|numeric',
-            'jarak' => 'required|numeric',
-            'kecepatan' => 'required|numeric',
-            'waktu_tempuh' => 'required|numeric',
-            'waktu_tunggu' => 'required|numeric',
-            'waktu_bongkar' => 'required|numeric',
-            'bongkar_tossa' => 'required|numeric',
-            'total_waktu_tossa' => 'required|numeric',
-            'waktu_istirahat' => 'required|numeric',
-            'waktu_angkut' => 'required|numeric',
-            'ritasi' => 'required|numeric',
-            'sampah' => 'required|numeric',
-            'jumlah_dumptruck' => 'required|numeric',
-            'jumlah_pekerja' => 'required|numeric'
-        ]);
-        //kalo manual
-        $dumptruck = Dumptruck::create([
-            'bulan' => $request->input('bulan'),
-            'tahun' => $request->input('tahun'),
-            'volume' => $request->input('volume'),
-            'jarak' => $request->input('jarak'),
-            'kecepatan' => $request->input('kecepatan'),
-            'waktu_tunggu' => $request->input('waktu_tunggu'),
-            'waktu_bongkar' => $request->input('waktu_bongkar'),
-            'bongkar_tossa' => $request->input('bongkar_tossa'),
-            'total_waktu_tossa' => $request->input('total_waktu_tossa'),
-            'waktu_istirahat' => $request->input('waktu_istirahat'),
-            'waktu_angkut' => $request->input('waktu_angkut'),
-            'waktu_tempuh' => $request->input('waktu_tempuh'),
-            'ritasi' => $request->input('ritasi'),
-            'jumlah_sampah' => $request->input('jumlah_sampah'),
-            'jumlah_dumptruck' => $request->input('jumlah_dumptruck'),
-            'jumlah_pekerja' => $request->input('jumlah_pekerja'),
-        ]);
+        $newdumptruck = new Dumptruck;
+        $newdumptruck['bulan'] = $request->bulan;
+        $newdumptruck['tahun'] = $request->tahun;
+        $newdumptruck['volume'] = $request->volume;
+        $newdumptruck['jarak'] = $request->jarak;
+        $newdumptruck['kecepatan'] = $request->kecepatan;
+        $newdumptruck['waktu_tunggu'] = $request->waktu_tunggu;
+        $newdumptruck['waktu_bongkar'] = $request->waktu_bongkar;
+        $newdumptruck['waktu_istirahat'] = $request->waktu_istirahat;
+        $newdumptruck['waktu_shift'] = $request->waktu_shift;
+        $newdumptruck['sampah'] = $request->sampah;
 
-        if (!$dumptruck->id) {
+        $newdumptruck->save();
+
+        if (!$newdumptruck->id) {
             return redirect()->back()->withInput()->with('alert_error', 'Gagal menambahkan data Dumptruck');
         }
 
@@ -82,5 +58,38 @@ class DumptruckController extends Controller
     {
 
         return view('create-dumptruck');
+    }
+    
+    public function edit($id)
+    {
+        $dumptruck = Dumptruck::findOrFail($id);
+        return view('edit-dumptruck', ['dumptruck' => $dumptruck]);
+    }
+
+    public function update(Request $request, $id) {
+        $newdumptruck = Dumptruck::findOrFail($id);
+        $newdumptruck['bulan'] = $request->bulan;
+        $newdumptruck['tahun'] = $request->tahun;
+        $newdumptruck['volume'] = $request->volume;
+        $newdumptruck['jarak'] = $request->jarak;
+        $newdumptruck['kecepatan'] = $request->kecepatan;
+        $newdumptruck['waktu_tunggu'] = $request->waktu_tunggu;
+        $newdumptruck['waktu_bongkar'] = $request->waktu_bongkar;
+        $newdumptruck['waktu_istirahat'] = $request->waktu_istirahat;
+        $newdumptruck['waktu_shift'] = $request->waktu_shift;
+        $newdumptruck['sampah'] = $request->sampah;
+        $newdumptruck->update();
+
+        if (!$newdumptruck->update()) {
+            return redirect()->back()->withInput()->with('alert_error', 'Gagal Ubah Data Armroll');
+        }
+
+        return redirect()->route('armroll')->with('alert_success', 'Data Armroll Berhasil Diubah!');
+    }
+
+    public function delete($id)
+    {
+        Dumptruck::findOrFail($id)->delete();
+        return redirect()->route('dumptruck')->with('alert_success', 'Data dumptruck berhasil di hapus');
     }
 }

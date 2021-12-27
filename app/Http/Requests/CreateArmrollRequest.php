@@ -15,7 +15,7 @@ class CreateArmrollRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('armroll-create', 'armroll-self-create');
+        return $this->user()->can('armroll-create');
     }
 
     /**

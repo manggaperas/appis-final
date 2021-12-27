@@ -41,7 +41,7 @@
 
             <form action="#" method="get" id="edit_form">
                 <div class="mb-3 flex items-center justify-start py-3">
-                    <select id="id_dumbtruck" class="block appearance-none w-50 bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline mr-3">
+                    <select id="id_dumptruck" class="block appearance-none w-50 bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline mr-3">
                         @foreach($data as $d)
                         <option value="{{ $d->id }}">{{ $d->id }}</option>
                         @endforeach
@@ -74,12 +74,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.6.4/jquery.min.js" integrity="sha512-SW0bB7zYONzOFdTogLM8mF+lpvSaPH55g+RyyV8+dRZkiW5n/c1gNgGk5i2xfzDLTmPHvSCqsaiEoZJDiToTWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
-    $('#id_dumbtruck').change(function() {
-        var id_dumbtruck = $('#id_dumbtruck').val();
+    $('#id_dumptruck').change(function() {
+        var id_dumptruck = $('#id_dumptruck').val();
 
-        if (id_dumbtruck) {
-            $('#edit_form').attr('action', '/dumbtruck/' + id_dumbtruck + '/edit/');
-            $('#delete_form').attr('action', '/dumbtruck/' + id_dumbtruck + '/delete/');
+        if (id_dumptruck) {
+            $('#edit_form').attr('action', '/dumptruck/' + id_dumptruck + '/edit/');
+            $('#delete_form').attr('action', '/dumptruck/' + id_dumptruck + '/delete/');
         }
     });
 </script>

@@ -64,7 +64,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dumptruck/{id}/edit', [DumptruckController::class, 'edit'])->name('dumptruck.edit');
     Route::post('dumptruck', [DumptruckController::class, 'store'])->name('dumptruck.store');
     Route::put('dumptruck', [DumptruckController::class, 'update'])->name('dumptruck.update');
-    Route::get('dumptruck/{id}/delete', [DumptruckController::class, 'delete'])->name('dumptruck.delete');
+    Route::post('dumptruck/{id}/delete', [DumptruckController::class, 'delete'])->name('dumptruck.delete');
 
     // Route Kontainer
     Route::get('/container', function () {
