@@ -47,15 +47,6 @@
 
         {{-- Show Table --}}
         <x-table :headings="$headings" :data="$data" />
-
-        {{-- <div class="flex justify-items-end">
-        <a class="flex items-center rounded rounded-md bg-green-500 px-2 py-2 hover:bg-green-600 text-white" href="{{ route('armroll.edit', auth()->) }}">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: -0.125em;" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M17 15V8h-2v7H8v2h7v7h2v-7h7v-2z" fill="currentColor"/></svg>
-            <span>Edit Armroll</span></a> --}}
-
-        {{-- <a class="flex items-center rounded rounded-md bg-green-500 px-2 py-2 hover:bg-green-600 text-white" href="{{ route('armroll.create') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: -0.125em;" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M17 15V8h-2v7H8v2h7v7h2v-7h7v-2z" fill="currentColor"/></svg>
-            <span>Hapus Armroll</span></a> --}}
         </div>
     </div>
 </x-app-layout>

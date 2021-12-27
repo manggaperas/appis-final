@@ -39,11 +39,9 @@
                 </div>
             </form>
 
-            <button class="flex items-center rounded rounded-md bg-green-500 px-2 py-2 hover:bg-green-600 text-white" href="{{ route('dumptruck.create') }}">
-            {{-- <a class="rounded rounded-md bg-green-500 px-4 py-2 hover:bg-green-600 text-white" href="{{ route('armroll.create') }}">Tambah Armroll</a> --}}
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: -0.125em;" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M17 15V8h-2v7H8v2h7v7h2v-7h7v-2z" fill="currentColor"/></svg>
-            <span>Tambah Dumptruck</span>
-            </button>
+            <a class="flex items-center rounded rounded-md bg-green-500 px-2 py-2 hover:bg-green-600 text-white" href="{{ route('dumptruck.create') }}">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: -0.125em;" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M17 15V8h-2v7H8v2h7v7h2v-7h7v-2z" fill="currentColor"/></svg>
+                <span>Tambah Dumptruck</span></a>
         </div>
     </div>
 

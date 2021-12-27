@@ -51,22 +51,22 @@ class DumptruckController extends Controller
         ]);
         //kalo manual
         $dumptruck = Dumptruck::create([
+            'bulan' => $request->input('bulan'),
+            'tahun' => $request->input('tahun'),
+            'volume' => $request->input('volume'),
             'jarak' => $request->input('jarak'),
             'kecepatan' => $request->input('kecepatan'),
-            'ritasi' => $request->input('ritasi'),
-            'waktu_tempuh' => $request->input('waktu_tempuh'),
             'waktu_tunggu' => $request->input('waktu_tunggu'),
             'waktu_bongkar' => $request->input('waktu_bongkar'),
             'bongkar_tossa' => $request->input('bongkar_tossa'),
             'total_waktu_tossa' => $request->input('total_waktu_tossa'),
             'waktu_istirahat' => $request->input('waktu_istirahat'),
             'waktu_angkut' => $request->input('waktu_angkut'),
-            'sampah' => $request->input('sampah'),
+            'waktu_tempuh' => $request->input('waktu_tempuh'),
+            'ritasi' => $request->input('ritasi'),
+            'jumlah_sampah' => $request->input('jumlah_sampah'),
             'jumlah_dumptruck' => $request->input('jumlah_dumptruck'),
             'jumlah_pekerja' => $request->input('jumlah_pekerja'),
-            'volume' => $request->input('volume'),
-            'bulan' => $request->input('bulan'),
-            'tahun' => $request->input('tahun')
         ]);
 
         if (!$dumptruck->id) {

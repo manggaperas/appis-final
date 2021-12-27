@@ -27,7 +27,7 @@ Route::view('/', 'welcome')->name('welcome');
 // Route::view('/', 'home')->name('home');
 // Route::view('/data', 'data')->name('data');
 // Route::view('/formula', 'formula')->name('formula');
-Route::view('/posting', 'posting')->name('posting');
+// Route::view('/posting', 'posting')->name('posting');
 // Route::view('/access', 'access')->name('access');
 
 // Route::get('/dashboard', function () {

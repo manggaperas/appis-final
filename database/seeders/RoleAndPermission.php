@@ -21,10 +21,15 @@ class RoleAndPermission extends Seeder
 
         $permissions = [
             'user-show',
+            'user-self-show',
             'user-index',
+            'user-self-index',
             'user-create',
+            'user-self-create',
             'user-edit',
+            'user-self-edit',
             'user-delete',
+            'user-self-delete',
 
             'armroll-show',
             'armroll-self-show',
@@ -92,6 +97,62 @@ class RoleAndPermission extends Seeder
                 $created_role = Role::create(['name' => $role]);
                 switch ($role) {
                     case 'sadmin':
+                        $created_role->syncPermissions([
+                            'user-show',
+                            'user-self-show',
+                            'user-index',
+                            'user-self-index',
+                            'user-create',
+                            'user-self-create',
+                            'user-edit',
+                            'user-self-edit',
+                            'user-delete',
+                            'user-self-delete',
+
+                            'armroll-show',
+                            'armroll-self-show',
+                            'armroll-index',
+                            'armroll-self-index',
+                            'armroll-create',
+                            'armroll-self-create',
+                            'armroll-edit',
+                            'armroll-self-create',
+                            'armroll-delete',
+                            'armroll-self-delete',
+
+                            'dumptruck-show',
+                            'dumptruck-self-show',
+                            'dumptruck-index',
+                            'dumptruck-self-index',
+                            'dumptruck-create',
+                            'dumptruck-self-create',
+                            'dumptruck-edit',
+                            'dumptruck-self-create',
+                            'dumptruck-delete',
+                            'dumptruck-self-delete',
+
+                            'container-show',
+                            'container-self-show',
+                            'container-index',
+                            'container-self-index',
+                            'container-create',
+                            'container-self-create',
+                            'container-edit',
+                            'container-self-create',
+                            'container-delete',
+                            'container-self-delete',
+
+                            'post-show',
+                            'post-self-show',
+                            'post-index',
+                            'post-self-index',
+                            'post-create',
+                            'post-self-create',
+                            'post-edit',
+                            'post-self-create',
+                            'post-delete',
+                            'post-self-delete',
+                        ]);
                         (User::factory()->create([
                             'name' => 'Mr. Super Administrator',
                             'email' => 'sadmin@appis.co.id'

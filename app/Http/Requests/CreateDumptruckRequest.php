@@ -3,10 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Contracts\Validation\Validator;
 
-class UpdateArmrollRequest extends FormRequest
+class CreateDumptruckRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,7 +13,7 @@ class UpdateArmrollRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('armroll-update', 'armroll-self-update');
+        return $this->user()->can('dumptruck-create', 'dumptruck-self-create');
     }
 
     /**
@@ -29,49 +27,49 @@ class UpdateArmrollRequest extends FormRequest
             'bulan' => 'required|in:januari,februari,maret,april,mei,juni,juli,agustus,september,oktober,november,desember',
             'tahun' => 'required|numeric',
             'volume' => 'required|numeric',
-            'waktu_muat' => 'required|numeric',
+            'jarak' => 'required|numeric',
+            'kecepatan' => 'required|numeric',
+            'waktu_tunggu' => 'required|numeric',
             'waktu_bongkar' => 'required|numeric',
             'waktu_istirahat' => 'required|numeric',
-            'kecepatan' => 'required|numeric',
-            'jarak' => 'required|numeric',
-            'jam_kerja' => 'required|numeric',
-            'jumlah_sampah' => 'required|numeric',
+            'waktu_shift' => 'required|numeric',
+            'sampah' => 'required|numeric'
         ];
     }
-    
+
     public function messages()
     {
         return[
             'bulan.required' => 'Pilih Bulan Data!',
             'tahun.required' => 'Pilih Tahun Data!',
-            'volume.required' => 'Pilih Volume Armroll!',
-            'kecepatan.required' => 'Masukkan Kecepatan Armroll!',
+            'volume.required' => 'Pilih Volume Dumptruck!',
             'jarak.required' => 'Masukkan Jarak Menuju TPA!',
+            'kecepatan.required' => 'Masukkan Kecepatan Dumptruck!',
+            'waktu_tunggu.required' => 'Masukkan Waktu Tunggu Dumptruck!',
+            'waktu_bongkar.required' => 'Masukkan Waktu Bongkar Tossa!',
             'waktu_istirahat.required' => 'Masukkan Waktu Istirahat Pekerja!',
-            'waktu_muat.required' => 'Masukkan Waktu Muat Kontainer!',
-            'waktu_bongkar.required' => 'Masukkan Waktu Bongkar Kontainer!',
-            'jam_kerja.required' => 'Masukkan Kecepatan Armroll!',
-            'jumlah_sampah.required' => 'Masukkan Jumlah Sampah yang Diangkut!',
+            'waktu_shift.required' => 'Masukkan Jam Kerja Pekerja!'
+            'sampah.required' => 'Masukkan Jumlah Sampah Terangkut!',
 
             'bulan.numeric' => 'Tolong Hanya Masukkan Angka!',
             'tahun.numeric' => 'Tolong Hanya Masukkan Angka!',
             'volume.numeric' => 'Tolong Hanya Masukkan Angka!',
-            'kecepatan.numeric' => 'Tolong Hanya Masukkan Angka!',
             'jarak.numeric' => 'Tolong Hanya Masukkan Angka!',
-            'waktu_istirahat.numeric' => 'Tolong Hanya Masukkan Angka!',
-            'waktu_muat.numeric' => 'Tolong Hanya Masukkan Angka!',
+            'kecepatan.numeric' => 'Tolong Hanya Masukkan Angka!',
+            'waktu_tunggu.numeric' => 'Tolong Hanya Masukkan Angka!',
             'waktu_bongkar.numeric' => 'Tolong Hanya Masukkan Angka!',
-            'jam_kerja.numeric' => 'Tolong Hanya Masukkan Angka!',
-            'jumlah_sampah.numeric' => 'Tolong Hanya Masukkan Angka!',
+            'waktu_istirahat.numeric' => 'Tolong Hanya Masukkan Angka!',
+            'waktu_shift.numeric' => 'Tolong Hanya Masukkan Angka!',
+            'sampah.numeric' => 'Tolong Hanya Masukkan Angka!',
         ];
     }
 
     public function failedValidation(Validator $validator)
     {
-        throw new HttpResponseException(response()->json([
-            'success'   => false,
-            'message'   => 'Gagal update armroll',
+        throw new HttpResponseException(respone()->json([
+            'success'   => 'Data Dumptruck berhasil ditambahkan!',
+            'message'   => 'Gagal tambah Dumptruck',
             'data'      => $validator->errors()
-        ]));
+        ]))
     }
 }

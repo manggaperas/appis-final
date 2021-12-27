@@ -26,7 +26,6 @@ class ArmrollController extends Controller
             'ritasi' => 'Ritasi',
             'waktu_perjalanan' => 'Waktu Total Pengangkutan'
         ]);
-
         return view('armroll', compact('data', 'headings'));
     }
 
@@ -62,6 +61,7 @@ class ArmrollController extends Controller
             'bulan' => $request->input('bulan'),
             'tahun' => $request->input('tahun')
         ]);
+        dd($armroll);
 
         // $data['waktu'] = ($data['jarak']/$data['kecepatan'])*60 + 20;
 
