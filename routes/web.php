@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArmrollController;
 use App\Http\Controllers\DumptruckController;
 use App\Http\Controllers\FrontController;
@@ -84,9 +85,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('timeline', TimelineController::class)->name('timeline'); //Route untuk Timeline
 
-    // Route::get('data', [ FrontController::class, 'index' ])->name('data'); 
+    //MANAGEMENT USER
+    Route::get('/user', function () {
+        return view('admin.users.index');
+    })->name('user');
+    Route::get('user', [UserController::class, 'index'])->name('user');
 
-
+    Route::get('create-user', [UserController::class, 'create'])->name('user.create');
+    Route::get('user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('user/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::post('user', [UserController::class, 'store'])->name('user.store');
+    Route::post('user/{id}/delete', [UserController::class, 'delete'])->name('user.delete');
 });
 
 require __DIR__ . '/auth.php';

@@ -47,4 +47,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Post::class);
     }
+
+    public function getRoleAttribute()
+    {
+        return $this->roles->first()->name;
+    }
 }
