@@ -26,7 +26,8 @@ class ArmrollController extends Controller
             'jumlah_armroll' => 'Kebutuhan Armroll',
             'jumlah_pekerja' => 'Jumlah Tenaga Kerja',
             'ritasi' => 'Ritasi',
-            'waktu_perjalanan' => 'Waktu Total Pengangkutan'
+            'waktu_perjalanan' => 'Waktu Total Pengangkutan',
+            'user_id' => 'User'
         ]);
         return view('armroll', compact('data', 'headings'));
     }
@@ -45,6 +46,8 @@ class ArmrollController extends Controller
         $newArmroll['bulan'] = $request->bulan;
         $newArmroll['tahun'] = $request->tahun;
         $newArmroll['shift'] = $request->shift;
+        $newArmroll['user_id'] = $request->user()->id;
+
 
         $newArmroll->save();
 
@@ -72,6 +75,7 @@ class ArmrollController extends Controller
         $newArmroll['bulan'] = $request->bulan;
         $newArmroll['tahun'] = $request->tahun;
         $newArmroll['shift'] = $request->shift;
+        $newArmroll['user_id'] = $request->user()->id;
         $newArmroll->update();
 
         if (!$newArmroll->update()) {

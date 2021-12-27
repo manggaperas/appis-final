@@ -31,6 +31,7 @@ class CreateDumptrucksTable extends Migration
             $table->integer('sampah')->unsigned()->default(10);
             $table->integer('jumlah_dumptruck');
             $table->integer('jumlah_pekerja');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
         });
     }

@@ -18,6 +18,8 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
+
+    protected $table = 'users';
     protected $fillable = [
         'name',
         'email',
@@ -48,8 +50,18 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Post::class);
     }
 
-    public function getRoleAttribute()
+    public function armroll()
     {
-        return $this->roles->first()->name;
+        return $this->hasMany(ArmRoll::class, 'user_id');
+    }
+
+    public function dumptruck()
+    {
+        return $this->hasMany(Dumptruck::class, 'user_id');
+    }
+
+    public function container()
+    {
+        return $this->hasMany(Container::class, 'user_id');
     }
 }

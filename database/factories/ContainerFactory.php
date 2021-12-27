@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ArmRollFactory extends Factory
+class ContainerFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,16 +14,12 @@ class ArmRollFactory extends Factory
     public function definition()
     {
         return [
-            'jarak' => 15,
-            'kecepatan' => 40,
-            'istirahat' => 15,
-            'muat' => 15,
-            'bongkar' => 5,
-            'sampah' => 236.7,
-            'volume' => 6,
             'bulan' => "januari",
             'tahun' => "2021",
-            'shift' => 8,
+            'jenis_container' => "TD",
+            'daya_tampung' => 26400,
+            'kebutuhan_container' => 62,
+            'sampah' => 3.71,
             'user_id' => 3,
         ];
     }

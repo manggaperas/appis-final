@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
 
 class CreateDumptruckRequest extends FormRequest
 {
@@ -39,7 +41,7 @@ class CreateDumptruckRequest extends FormRequest
 
     public function messages()
     {
-        return[
+        return [
             'bulan.required' => 'Pilih Bulan Data!',
             'tahun.required' => 'Pilih Tahun Data!',
             'volume.required' => 'Pilih Volume Dumptruck!',
@@ -48,7 +50,7 @@ class CreateDumptruckRequest extends FormRequest
             'waktu_tunggu.required' => 'Masukkan Waktu Tunggu Dumptruck!',
             'waktu_bongkar.required' => 'Masukkan Waktu Bongkar Tossa!',
             'waktu_istirahat.required' => 'Masukkan Waktu Istirahat Pekerja!',
-            'waktu_shift.required' => 'Masukkan Jam Kerja Pekerja!'
+            'waktu_shift.required' => 'Masukkan Jam Kerja Pekerja!',
             'sampah.required' => 'Masukkan Jumlah Sampah Terangkut!',
 
             'bulan.numeric' => 'Tolong Hanya Masukkan Angka!',
@@ -66,10 +68,10 @@ class CreateDumptruckRequest extends FormRequest
 
     public function failedValidation(Validator $validator)
     {
-        throw new HttpResponseException(respone()->json([
+        throw new HttpResponseException(response()->json([
             'success'   => 'Data Dumptruck berhasil ditambahkan!',
             'message'   => 'Gagal tambah Dumptruck',
             'data'      => $validator->errors()
-        ]))
+        ]));
     }
 }

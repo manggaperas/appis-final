@@ -10,4 +10,9 @@ class Container extends Model
     use HasFactory;
 
     protected $table = 'containers';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

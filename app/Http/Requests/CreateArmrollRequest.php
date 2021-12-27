@@ -29,13 +29,13 @@ class CreateArmrollRequest extends FormRequest
             'bulan' => 'required|in:januari,februari,maret,april,mei,juni,juli,agustus,september,oktober,november,desember',
             'tahun' => 'required|numeric',
             'volume' => 'required|numeric',
-            'waktu_muat' => 'required|numeric',
-            'waktu_bongkar' => 'required|numeric',
-            'waktu_istirahat' => 'required|numeric',
+            // 'waktu_muat' => 'required|numeric',
+            // 'waktu_bongkar' => 'required|numeric',
+            // 'waktu_istirahat' => 'required|numeric',
             'kecepatan' => 'required|numeric',
             'jarak' => 'required|numeric',
-            'jam_kerja' => 'required|numeric',
-            'jumlah_sampah' => 'required|numeric',
+            'shift' => 'required|numeric',
+            // 'jumlah_sampah' => 'required|numeric',
         ];
     }
 

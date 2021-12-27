@@ -21,6 +21,7 @@ class CreateContainersTable extends Migration
             $table->integer('daya_tampung')->unsigned();
             $table->integer('kebutuhan_container')->unsigned();
             $table->integer('sampah')->unsigned();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
         });
     }

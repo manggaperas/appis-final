@@ -24,7 +24,8 @@ class DumptruckController extends Controller
             'waktu_angkut' => 'Waktu Total Pengangkutan',
             'ritasi' => 'Ritasi',
             'jumlah_dumptruck' => 'Kebutuhan Dumptruck',
-            'jumlah_pekerja' => 'Jumlah Tenaga Kerja'
+            'jumlah_pekerja' => 'Jumlah Tenaga Kerja',
+            'user_id' => 'User'
         ]);
 
         return view('dumptruck', compact('data', 'headings'));
@@ -44,6 +45,8 @@ class DumptruckController extends Controller
         $newdumptruck['waktu_istirahat'] = $request->waktu_istirahat;
         $newdumptruck['waktu_shift'] = $request->waktu_shift;
         $newdumptruck['sampah'] = $request->sampah;
+        $newdumptruck['user_id'] = $request->user()->id;
+
 
         $newdumptruck->save();
 
@@ -59,14 +62,15 @@ class DumptruckController extends Controller
 
         return view('create-dumptruck');
     }
-    
+
     public function edit($id)
     {
         $dumptruck = Dumptruck::findOrFail($id);
         return view('edit-dumptruck', ['dumptruck' => $dumptruck]);
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         $newdumptruck = Dumptruck::findOrFail($id);
         $newdumptruck['bulan'] = $request->bulan;
         $newdumptruck['tahun'] = $request->tahun;
@@ -78,6 +82,8 @@ class DumptruckController extends Controller
         $newdumptruck['waktu_istirahat'] = $request->waktu_istirahat;
         $newdumptruck['waktu_shift'] = $request->waktu_shift;
         $newdumptruck['sampah'] = $request->sampah;
+        $newdumptruck['user_id'] = $request->user()->id;
+
         $newdumptruck->update();
 
         if (!$newdumptruck->update()) {

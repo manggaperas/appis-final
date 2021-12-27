@@ -17,5 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RoleAndPermission::class);
         $this->call(ArmrollSeeder::class);
+        $this->call(ContainerSeeder::class);
+        $this->call(DumptruckSeeder::class);
     }
 }

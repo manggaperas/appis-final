@@ -64,4 +64,9 @@ class ArmRoll extends Model
     //     $data['waktu'] = ($data['kecepatan']/$data['jarak'])*60 + 20;
     //     return $query->create($data);
     // }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

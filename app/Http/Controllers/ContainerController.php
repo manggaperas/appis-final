@@ -25,6 +25,8 @@ class ContainerController extends Controller
             'jenis_container' => 'Jenis Container',
             'daya_tampung' => 'Daya Tampung',
             'sampah' => 'Sampah',
+            'user_id' => 'User'
+
         ]);
 
         return view('container', compact('data', 'headings'));
@@ -40,6 +42,8 @@ class ContainerController extends Controller
         $newContainer['daya_tampung'] = $request->daya_tampung;
         $newContainer['kebutuhan_container'] = $request->kebutuhan_container;
         $newContainer['sampah'] = $request->sampah;
+        $newContainer['user_id'] = $request->user()->id;
+
 
         $newContainer->save();
 
@@ -57,6 +61,8 @@ class ContainerController extends Controller
         $datas['daya_tampung'] = $request->daya_tampung;
         $datas['kebutuhan_container'] = $request->kebutuhan_container;
         $datas['sampah'] = $request->sampah;
+        $datas['user_id'] = $request->user()->id;
+
 
         $datas->update();
 

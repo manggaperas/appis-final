@@ -30,6 +30,7 @@ class CreateArmrollsTable extends Migration
             $table->integer('waktu_perjalanan')->unsigned()->nullable();
             $table->integer('jumlah_kontainer')->nullable();
             $table->integer('jumlah_pekerja')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
         });
     }
