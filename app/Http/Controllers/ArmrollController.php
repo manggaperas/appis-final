@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateArmrollRequest;
+use App\Http\Requests\UpdateArmrollRequest;
 use App\Models\ArmRoll;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,7 +12,6 @@ class ArmrollController extends Controller
 {
     public function index(Request $request)
     {
-
         // Data yang ditampilin Armroll Table
         $bulan = $request->input('bulan', 'januari');
         $tahun = $request->input('tahun', date('Y'));
@@ -49,9 +49,8 @@ class ArmrollController extends Controller
         $newArmroll->save();
 
         if ($newArmroll->save()) {
-        return redirect()->route('armroll')->with('alert_success', 'Data armroll berhasil di tambah');
-    }
-
+            return redirect()->route('armroll')->with('alert_success', 'Data armroll berhasil di tambah');
+        }
     }
 
     public function edit($id)
@@ -62,7 +61,6 @@ class ArmrollController extends Controller
 
     public function update(Request $request, $id)
     {
-
         $newArmroll = ArmRoll::findOrFail($id);
         $newArmroll['jarak'] = $request->jarak;
         $newArmroll['kecepatan'] = $request->kecepatan;
@@ -74,7 +72,6 @@ class ArmrollController extends Controller
         $newArmroll['bulan'] = $request->bulan;
         $newArmroll['tahun'] = $request->tahun;
         $newArmroll['shift'] = $request->shift;
-        // dd($newArmroll);
         $newArmroll->update();
 
         if (!$newArmroll->update()) {
@@ -87,7 +84,12 @@ class ArmrollController extends Controller
     // direction to form tambah armroll
     public function create()
     {
-
         return view('create_armroll');
+    }
+
+    public function delete($id)
+    {
+        ArmRoll::findOrFail($id)->delete();
+        return redirect()->route('armroll')->with('alert_success', 'Data armroll berhasil di hapus');
     }
 }

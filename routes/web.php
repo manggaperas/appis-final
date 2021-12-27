@@ -36,53 +36,57 @@ Route::view('/', 'welcome')->name('welcome');
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    
+
     // Route Dashboard
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    
+
     // Route Armroll
     Route::get('/armroll', function () {
         return view('armroll');
     })->name('armroll');
-    Route::get('armroll', [ ArmrollController::class, 'index' ])->name('armroll');
-    Route::post('armroll', [ ArmrollController::class, 'store' ])->name('armroll.store');
-    Route::put('armroll/{id}', [ ArmrollController::class, 'update' ])->name('armroll.update');
-    Route::get('create-armroll', [ ArmrollController::class, 'create' ])->name('armroll.create');
-    Route::get('armroll/{id}/edit', [ ArmrollController::class, 'edit' ])->name('armroll.edit');
-    
+    Route::get('armroll', [ArmrollController::class, 'index'])->name('armroll');
+    Route::post('armroll', [ArmrollController::class, 'store'])->name('armroll.store');
+    Route::put('armroll/{id}', [ArmrollController::class, 'update'])->name('armroll.update');
+    Route::get('create-armroll', [ArmrollController::class, 'create'])->name('armroll.create');
+    Route::get('armroll/{id}/edit', [ArmrollController::class, 'edit'])->name('armroll.edit');
+    Route::post('armroll/{id}/delete', [ArmrollController::class, 'delete'])->name('armroll.delete');
+
 
     // Route Dumptruck
     Route::get('/dumptruck', function () {
         return view('dumptruck');
     })->name('dumptruck');
-    Route::get('dumptruck', [ DumptruckController::class, 'index' ])->name('dumptruck');
-    Route::get('create-dumptruck', [ DumptruckController::class, 'create' ])->name('dumptruck.create');
-    Route::get('dumptruck/{id}/edit', [ DumptruckController::class, 'edit' ])->name('dumptruck.edit');
-    Route::post('dumptruck', [ DumptruckController::class, 'store' ])->name('dumptruck.store');
-    Route::put('dumptruck', [ DumptruckController::class, 'update' ])->name('dumptruck.update');
+    Route::get('dumptruck', [DumptruckController::class, 'index'])->name('dumptruck');
+    Route::get('create-dumptruck', [DumptruckController::class, 'create'])->name('dumptruck.create');
+    Route::get('dumptruck/{id}/edit', [DumptruckController::class, 'edit'])->name('dumptruck.edit');
+    Route::post('dumptruck', [DumptruckController::class, 'store'])->name('dumptruck.store');
+    Route::put('dumptruck', [DumptruckController::class, 'update'])->name('dumptruck.update');
+    Route::get('dumptruck/{id}/delete', [DumptruckController::class, 'delete'])->name('dumptruck.delete');
 
     // Route Kontainer
     Route::get('/container', function () {
         return view('container');
     })->name('container');
-    Route::get('container', [ ContainerController::class, 'index' ])->name('container');
-    Route::get('create-container', [ ContainerController::class, 'create' ])->name('container.create');
-    Route::get('container/{id}/edit', [ ContainerController::class, 'edit' ])->name('container.edit');
-    Route::post('container', [ ContainerControllerr::class, 'store' ])->name('container.store');
-    Route::put('container', [ ContainerController::class, 'update' ])->name('container.update');
+    Route::get('container', [ContainerController::class, 'index'])->name('container');
+
+    Route::get('create-container', [ContainerController::class, 'create'])->name('container.create');
+    Route::get('container/{id}/edit', [ContainerController::class, 'edit'])->name('container.edit');
+    Route::put('container/{id}', [ContainerController::class, 'update'])->name('container.update');
+    Route::post('container', [ContainerController::class, 'store'])->name('container.store');
+    Route::post('container/{id}/delete', [ContainerController::class, 'delete'])->name('container.delete');
 
     // Route Account Manager
     Route::get('/access', function () {
         return view('access');
     })->name('access');
-    
+
     Route::get('timeline', TimelineController::class)->name('timeline'); //Route untuk Timeline
-    
+
     // Route::get('data', [ FrontController::class, 'index' ])->name('data'); 
 
-    
+
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

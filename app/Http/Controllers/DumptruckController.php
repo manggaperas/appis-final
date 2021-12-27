@@ -9,17 +9,18 @@ use Illuminate\Support\Facades\DB;
 class DumptruckController extends Controller
 {
 
-    public function index(Request $request){
+    public function index(Request $request)
+    {
         // Data yang ditampilin pada tabel Dumptruck
         $bulan = $request->input('bulan', 'januari');
         $tahun = $request->input('tahun', date('Y'));
-        $volume = $request->input('volume','8' );
+        $volume = $request->input('volume', '8');
 
         $data = Dumptruck::whereBulan($bulan)->whereTahun($tahun)->whereVolume($volume)->paginate();
         $headings = collect([
             'bulan' => 'Bulan',
             'tahun' => 'Tahun',
-            'volume'=> 'Kapasitas Dumptruck',
+            'volume' => 'Kapasitas Dumptruck',
             'waktu_perjalanan' => 'Waktu Total Pengangkutan',
             'ritasi' => 'Ritasi',
             'jumlah_dumptruck' => 'Kebutuhan Dumptruck',
@@ -28,9 +29,10 @@ class DumptruckController extends Controller
 
         return view('dumptruck', compact('data', 'headings'));
     }
-    
+
     // Method penyimpanan data ke database dumptrucks
-    public function store (Request $request) {
+    public function store(Request $request)
+    {
         $this->validate($request, [
             'bulan' => 'required|in:januari,februari,maret,april,mei,juni,juli,agustus,september,oktober,november,desember',
             'tahun' => 'required|numeric',
@@ -75,10 +77,10 @@ class DumptruckController extends Controller
 
         return redirect()->route('dumptruck')->with('alert_success', 'Data Dumptruck berhasil ditambahkan!');
     }
-    
-    public function create(){
+
+    public function create()
+    {
 
         return view('create-dumptruck');
     }
-    
 }
