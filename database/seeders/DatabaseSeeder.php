@@ -16,13 +16,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(RoleAndPermission::class);
-        // $this->call(PermissionAndRoleAndUserSeeder::class);
-        // \App\Models\User::factory(10)->create();
-        // User::create([
-        //     'name' => 'Administrator',
-        //     'email' => 'admin@appis.co.id',
-        //     'email_verified_at' => now(),
-        //     'password' => Hash::make('password')
-        // ]);
+        $this->call(ArmrollSeeder::class);
     }
 }

@@ -41,7 +41,7 @@ class CreateArmrollRequest extends FormRequest
 
     public function messages()
     {
-        return[
+        return [
             'bulan.required' => 'Pilih Bulan Data!',
             'tahun.required' => 'Pilih Tahun Data!',
             'volume.required' => 'Pilih Volume Armroll!',
@@ -68,10 +68,6 @@ class CreateArmrollRequest extends FormRequest
 
     public function failedValidation(Validator $validator)
     {
-        throw new HttpResponseException(response()->json([
-            'success'   => 'Data Armroll berhasil ditambahkan!',
-            'message'   => 'Gagal tambah Armroll',
-            'data'      => $validator->errors()
-        ]));
+        return redirect()->back()->withInput()->with('alert_error', $validator->errors());
     }
 }

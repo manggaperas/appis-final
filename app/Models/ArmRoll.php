@@ -18,14 +18,14 @@ class ArmRoll extends Model
     {
         parent::boot();
         //ini nanti kolom time langsung otomatis terisi hasil perhitungan saat insert
-        static::creating(function($newArmroll) {
+        static::creating(function ($newArmroll) {
             // $newArmroll->waktu = ($newArmroll->jarak/$newArmroll->kecepatan)*60 + 20;
             // return $newArmroll;
-            $newArmroll->waktu_perjalanan = ($newArmroll->jarak/$newArmroll->kecepatan)*60 + 20;
-            $newArmroll->jumlah_kontainer = ($newArmroll->sampah/$newArmroll->volume*1.2);
-            $newArmroll->jumlah_pekerja = ($newArmroll->jumlah_armroll*2);
-            $newArmroll->ritasi = ($newArmroll->shift*60)/$newArmroll->waktu_perjalanan;
-            $newArmroll->jumlah_armroll = ($newArmroll->jumlah_kontainer/$newArmroll->ritasi);
+            $newArmroll->waktu_perjalanan = ($newArmroll->jarak / $newArmroll->kecepatan) * 60 + 20;
+            $newArmroll->jumlah_kontainer = ($newArmroll->sampah / $newArmroll->volume * 1.2);
+            $newArmroll->ritasi = ($newArmroll->shift * 60) / $newArmroll->waktu_perjalanan;
+            $newArmroll->jumlah_armroll = ($newArmroll->jumlah_kontainer / $newArmroll->ritasi);
+            $newArmroll->jumlah_pekerja = ($newArmroll->jumlah_armroll * 2);
             // ritasi dan jumlah_armroll null di database
             // controll ke model gak nyambung
             // event
@@ -33,14 +33,14 @@ class ArmRoll extends Model
         });
 
         //tapi pas update juga harus di definisikan buat catch perubahan nilai
-        static::updating(function($newArmroll) {
+        static::updating(function ($newArmroll) {
             // $newArmroll->waktu = ($newArmroll->jarak/$newArmroll->kecepatan)*60 + 20;
             // return $newArmroll;
-            $newArmroll->waktu_perjalanan = ($newArmroll->jarak/$newArmroll->kecepatan)*60 + 20;
-            $newArmroll->jumlah_kontainer = ($newArmroll->sampah/$newArmroll->volume*1.2);
-            $newArmroll->jumlah_pekerja = ($newArmroll->jumlah_armroll*2);
-            $newArmroll->ritasi = ($newArmroll->shift*60)/$newArmroll->waktu_perjalanan;
-            $newArmroll->jumlah_armroll = ($newArmroll->jumlah_kontainer/$newArmroll->ritasi);
+            $newArmroll->waktu_perjalanan = ($newArmroll->jarak / $newArmroll->kecepatan) * 60 + 20;
+            $newArmroll->jumlah_kontainer = ($newArmroll->sampah / $newArmroll->volume * 1.2);
+            $newArmroll->ritasi = ($newArmroll->shift * 60) / $newArmroll->waktu_perjalanan;
+            $newArmroll->jumlah_armroll = ($newArmroll->jumlah_kontainer / $newArmroll->ritasi);
+            $newArmroll->jumlah_pekerja = ($newArmroll->jumlah_armroll * 2);
             return $newArmroll;
         });
     }

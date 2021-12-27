@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDumptruckTable extends Migration
+class CreateDumptrucksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,6 +15,8 @@ class CreateDumptruckTable extends Migration
     {
         Schema::create('dumptrucks', function (Blueprint $table) {
             $table->id();
+            $table->integer('bulan')->unsigned()->default(10);
+            $table->integer('tahun')->unsigned()->default(10);
             $table->integer('volume');
             $table->integer('jarak');
             $table->integer('waktu_tempuh');
@@ -25,6 +27,7 @@ class CreateDumptruckTable extends Migration
             $table->integer('waktu_istirahat');
             $table->integer('waktu_angkut');
             $table->integer('ritasi');
+            $table->integer('jumlah_sampah')->unsigned()->default(10);
             $table->integer('jumlah_dumptruck');
             $table->integer('jumlah_pekerja');
             $table->timestamps();

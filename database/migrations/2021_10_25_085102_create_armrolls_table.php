@@ -19,10 +19,17 @@ class CreateArmrollsTable extends Migration
             $table->string('tahun');
             $table->bigInteger('kecepatan');
             $table->bigInteger('jarak');
-            $table->bigInteger('waktu');
-            $table->bigInteger('ritasi');
-            $table->bigInteger('jumlah_armroll');
-            $table->rememberToken();
+            $table->integer('istirahat')->unsigned();
+            $table->integer('muat')->unsigned();
+            $table->integer('bongkar')->unsigned();
+            $table->integer('shift')->unsigned();
+            $table->float('ritasi')->nullable();
+            $table->bigInteger('jumlah_armroll')->nullable();
+            $table->float('sampah')->unsigned();
+            $table->float('volume')->unsigned();
+            $table->integer('waktu_perjalanan')->unsigned()->nullable();
+            $table->integer('jumlah_kontainer')->nullable();
+            $table->integer('jumlah_pekerja')->nullable();
             $table->timestamps();
         });
     }
