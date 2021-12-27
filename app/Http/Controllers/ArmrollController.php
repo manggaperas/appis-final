@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateArmrollRequest;
 use App\Models\ArmRoll;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -30,66 +31,54 @@ class ArmrollController extends Controller
     }
 
     // Method penyimpanan data ke database armrolls
-    public function store (Request $request) {
-        $this->validate($request, [
-            'kecepatan' => 'required|numeric',
-            'jarak' => 'required|numeric',
-            'ritasi' => 'required|numeric',
-            'jumlah_armroll' => 'required|numeric',
-            'istirahat' => 'required|numeric',
-            'muat' => 'required|numeric',
-            'bongkar' => 'required|numeric',
-            'sampah' => 'required|numeric',
-            'volume' => 'required|numeric',
-            'bulan' => 'required|in:januari,februari,maret,april,mei,juni,juli,agustus,september,oktober,november,desember',
-            'tahun' => 'required|numeric',
-        ]);
-        // pake scope yang td namanya add 
-        // ArmRoll::add($request->validated()); 
+    public function store (CreateArmrollRequest $request) {
+        $newArmroll = new ArmRoll;
+        $newArmroll['jarak'] = $request->jarak;
+        $newArmroll['kecepatan'] = $request->kecepatan;
+        $newArmroll['istirahat'] = $request->istirahat;
+        $newArmroll['muat'] = $request->muat;
+        $newArmroll['bongkar'] = $request->bongkar;
+        $newArmroll['sampah'] = $request->sampah;
+        $newArmroll['volume'] = $request->volume;
+        $newArmroll['bulan'] = $request->bulan;
+        $newArmroll['tahun'] = $request->tahun;
+        $newArmroll['shift'] = $request->shift;
 
-        //kalo manual
-        $armroll = ArmRoll::create([
-            'jarak' => $request->input('jarak'),
-            'kecepatan' => $request->input('kecepatan'),
-            'ritasi' => $request->input('ritasi'),
-            'jumlah_armroll' => $request->input('jumlah_armroll'),
-            'istirahat' => $request->input('istirahat'),
-            'muat' => $request->input('muat'),
-            'bongkar' => $request->input('bongkar'),
-            'sampah' => $request->input('sampah'),
-            'volume' => $request->input('volume'),
-            'bulan' => $request->input('bulan'),
-            'tahun' => $request->input('tahun')
-        ]);
-        dd($armroll);
+        $newArmroll->save();
 
-        // $data['waktu'] = ($data['jarak']/$data['kecepatan'])*60 + 20;
-
-        // dd($data);
-        // $armroll = new ArmRoll;
-        // $armroll->jarak = $request->input('jarak');
-        // $armroll->kecepatan = $request->input('kecepatan');
-        // $armroll->ritasi = $request->input('ritasi');
-        // $armroll->jumlah_armroll = $request->input('jumlah_armroll');
-        // $armroll->bulan = $request->input('bulan');
-        // $armroll->tahun = $request->input('tahun');
-        // $armroll->waktu = ($request->input('jarak')/$request->input('kecepatan'))*60 + 20;
-
-        // if (!$armroll->save()) {
-        if (!$armroll->id) {
-            return redirect()->back()->withInput()->with('alert_error', 'Gagal tambah armroll');
+        if (!$newArmroll->id) {
+            return redirect()->back()->withInput()->with('alert_error', 'Gagal Menambah Data Armroll');
         }
 
         return redirect()->route('armroll')->with('alert_success', 'Data armroll berhasil di tambah');
     }
 
     public function edit($id){
-        $armroll = DB::table('armrolls')->where('id', $id)->first();
-        return view('edit-armroll', ['armroll'=>$armroll]);
+        $armroll = ArmRoll::findOrFail($id);
+        return view('edit-armroll', ['armroll' => $armroll]);
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id) {
 
+        $newArmroll = ArmRoll::findOrFail($id);
+        $newArmroll['jarak'] = $request->jarak;
+        $newArmroll['kecepatan'] = $request->kecepatan;
+        $newArmroll['istirahat'] = $request->istirahat;
+        $newArmroll['muat'] = $request->muat;
+        $newArmroll['bongkar'] = $request->bongkar;
+        $newArmroll['sampah'] = $request->sampah;
+        $newArmroll['volume'] = $request->volume;
+        $newArmroll['bulan'] = $request->bulan;
+        $newArmroll['tahun'] = $request->tahun;
+        $newArmroll['shift'] = $request->shift;
+        // dd($newArmroll);
+        $newArmroll->update();
+
+        if (!$newArmroll->update()) {
+            return redirect()->back()->withInput()->with('alert_error', 'Gagal Ubah Data Armroll');
+        }
+
+        return redirect()->route('armroll')->with('alert_success', 'Data Armroll Berhasil Diubah!');
     }
 
     // direction to form tambah armroll

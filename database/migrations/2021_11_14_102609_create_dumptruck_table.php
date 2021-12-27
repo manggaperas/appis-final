@@ -13,7 +13,7 @@ class CreateDumptruckTable extends Migration
      */
     public function up()
     {
-        Schema::create('dumptruck', function (Blueprint $table) {
+        Schema::create('dumptrucks', function (Blueprint $table) {
             $table->id();
             $table->integer('volume');
             $table->integer('jarak');
@@ -38,6 +38,6 @@ class CreateDumptruckTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dumptruck');
+        Schema::dropIfExists('dumptrucks');
     }
 }
